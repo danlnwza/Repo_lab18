@@ -5,8 +5,37 @@ struct Rect{
 	double x,y,w,h;
 };
 
-double overlap(){
+double overlap(Rect* R1, Rect* R2){
 
+    double xl  = max(R1->x, R2->x);
+    double xr = min(R1->x + R1->w, R2->x + R2->w);
 
+    double yt    = min(R1->y, R2->y);
+    double yb = max(R1->y - R1->h, R2->y - R2->h);
 
+    double w = xr - xl;
+    double h = yt- yb;
+
+    if(w > 0 && h > 0)
+        return w * h;
+    else
+        return 0;
 }
+
+int main() {
+
+	/*
+	Rect R1 = {1,1,5,5};
+	Rect R2 = {2,2,5,5};
+	
+	Rect R1 = {1,1,5,5};
+	Rect R2 = {7,2,3,3};
+	
+	*/
+	Rect R1 = {-1,2,6.9,9.6};
+	Rect R2 = {0,0,1.2,2.5};
+	cout << overlap(&R1,&R2);	
+
+
+	
+}	
